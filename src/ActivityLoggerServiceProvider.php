@@ -22,13 +22,6 @@ class ActivityLoggerServiceProvider extends PackageServiceProvider
      */
     protected $package = 'activity-logger';
 
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
     /* -----------------------------------------------------------------
      |  Main Methods
      | -----------------------------------------------------------------
