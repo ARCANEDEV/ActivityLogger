@@ -1,0 +1,45 @@
+{
+    "name":        "arcanedev/activity-logger",
+    "description": "A very simple logger to monitor the users' activities",
+    "keywords":    ["laravel", "arcanedev", "log", "logger", "user", "activity"],
+    "homepage":    "https://github.com/arcanedev/activity-logger",
+    "authors": [
+        {
+            "name":     "ARCANEDEV",
+            "email":    "arcanedev.maroc@gmail.com",
+            "homepage": "https://github.com/arcanedev-maroc",
+            "role":     "Developer"
+        }
+    ],
+    "type":    "library",
+    "license": "MIT",
+    "require": {
+        "php":               ">=7.0",
+        "arcanedev/support": "~4.2.0",
+        "psr/log": "^1.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.5.0",
+        "orchestra/database":  "~3.5.0",
+        "phpunit/phpunit":     "~6.0",
+        "phpunit/phpcov":      "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Arcanedev\\ActivityLogger\\": "src/"
+        },
+        "files": ["helpers.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Arcanedev\\ActivityLogger\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Arcanedev\\ActivityLogger\\ActivityLoggerServiceProvider"
+            ]
+        }
+    }
+}
