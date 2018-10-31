@@ -39,10 +39,8 @@ class CreateActivitiesLogsTable extends Migration
             $table->string('log_name')->nullable();
             $table->string('log_level')->default(config('activity-logger.defaults.log-level', 'info'));
             $table->text('description');
-            $table->unsignedInteger('subject_id')->nullable();
-            $table->string('subject_type')->nullable();
-            $table->unsignedInteger('causer_id')->nullable();
-            $table->string('causer_type')->nullable();
+            $table->nullableMorphs('subject');
+            $table->nullableMorphs('causer');
             $table->text('properties')->nullable();
             $table->timestamps();
 
