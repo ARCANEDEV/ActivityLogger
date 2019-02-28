@@ -26,14 +26,14 @@ class ActivityLoggerTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->logger = $this->app->make(\Arcanedev\ActivityLogger\Contracts\ActivityLogger::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->logger);
 
@@ -222,14 +222,12 @@ class ActivityLoggerTest extends TestCase
         static::assertEquals($userId, $firstActivity->causer->id);
     }
 
-    /**
-     * @test
-     *
-     * @expectedException         \Arcanedev\ActivityLogger\Exceptions\CouldNotLogActivity
-     * @expectedExceptionMessage  Could not determine a user with identifier `999`.
-     */
+    /** @test */
     public function it_will_throw_an_exception_if_it_cannot_translate_a_causer_id()
     {
+        $this->expectException(\Arcanedev\ActivityLogger\Exceptions\CouldNotLogActivity::class);
+        $this->expectExceptionMessage('Could not determine a user with identifier `999`.');
+
         $this->logger->causedBy(999);
     }
 
