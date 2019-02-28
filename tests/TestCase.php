@@ -39,7 +39,6 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [
-            \Orchestra\Database\ConsoleServiceProvider::class,
             \Arcanedev\ActivityLogger\ActivityLoggerServiceProvider::class,
         ];
     }
@@ -62,10 +61,8 @@ abstract class TestCase extends BaseTestCase
      | -----------------------------------------------------------------
      */
 
-    protected function checkRequirements()
+    protected function assertPreConditions()
     {
-        parent::checkRequirements();
-
         collect($this->getAnnotations())->filter(function ($location) {
             return in_array('!Travis', array_get($location, 'requires', []));
         })->each(function ($location) {
