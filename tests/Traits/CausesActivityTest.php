@@ -25,6 +25,6 @@ class CausesActivityTest extends TestCase
         activity()->by($causer)->track('perform activity');
         activity()->by($causer)->track('perform another activity');
 
-        $this->assertCount(2, $causer->activities);
+        static::assertCount(2, $causer->activities);
     }
 }

@@ -54,12 +54,6 @@ abstract class TestCase extends BaseTestCase
         /** @var  \Illuminate\Contracts\Config\Repository  $config */
         $config = $app['config'];
 
-        $config->set('database.default', 'sqlite');
-        $config->set('database.connections.sqlite', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
         $config->set('auth.providers.users.model', User::class);
     }
 
@@ -123,8 +117,8 @@ abstract class TestCase extends BaseTestCase
         return Activity::query()->get()->last();
     }
 
-    protected function markTestAsPassed()
+    protected static function markTestAsPassed()
     {
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 }

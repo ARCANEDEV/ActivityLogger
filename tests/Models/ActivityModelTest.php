@@ -39,9 +39,9 @@ class ActivityModelTest extends TestCase
     {
         $activityInLog3 = Activity::inLog('log3')->get();
 
-        $this->assertCount(1, $activityInLog3);
+        static::assertCount(1, $activityInLog3);
 
-        $this->assertEquals('log3', $activityInLog3->first()->log_name);
+        static::assertEquals('log3', $activityInLog3->first()->log_name);
     }
 
     /** @test */
@@ -49,10 +49,10 @@ class ActivityModelTest extends TestCase
     {
         $activity = Activity::inLog('log2', 'log4')->get();
 
-        $this->assertCount(2, $activity);
+        static::assertCount(2, $activity);
 
-        $this->assertEquals('log2', $activity->first()->log_name);
-        $this->assertEquals('log4', $activity->last()->log_name);
+        static::assertEquals('log2', $activity->first()->log_name);
+        static::assertEquals('log4', $activity->last()->log_name);
     }
 
     /** @test */
@@ -60,10 +60,10 @@ class ActivityModelTest extends TestCase
     {
         $activity = Activity::inLog(['log1', 'log2'])->get();
 
-        $this->assertCount(2, $activity);
+        static::assertCount(2, $activity);
 
-        $this->assertEquals('log1', $activity->first()->log_name);
-        $this->assertEquals('log2', $activity->last()->log_name);
+        static::assertEquals('log1', $activity->first()->log_name);
+        static::assertEquals('log2', $activity->last()->log_name);
     }
 
     /** @test */
@@ -79,10 +79,10 @@ class ActivityModelTest extends TestCase
 
         $activities = Activity::causedBy($causer)->get();
 
-        $this->assertCount(1, $activities);
-        $this->assertEquals($causer->getKey(), $activities->first()->causer_id);
-        $this->assertEquals(get_class($causer), $activities->first()->causer_type);
-        $this->assertEquals('Foo', $activities->first()->description);
+        static::assertCount(1, $activities);
+        static::assertEquals($causer->getKey(), $activities->first()->causer_id);
+        static::assertEquals(get_class($causer), $activities->first()->causer_type);
+        static::assertEquals('Foo', $activities->first()->description);
     }
 
     /** @test */
@@ -98,10 +98,10 @@ class ActivityModelTest extends TestCase
 
         $activities = Activity::forSubject($subject)->get();
 
-        $this->assertCount(1, $activities);
-        $this->assertEquals($subject->getKey(), $activities->first()->subject_id);
-        $this->assertEquals(get_class($subject), $activities->first()->subject_type);
-        $this->assertEquals('Foo', $activities->first()->description);
+        static::assertCount(1, $activities);
+        static::assertEquals($subject->getKey(), $activities->first()->subject_id);
+        static::assertEquals(get_class($subject), $activities->first()->subject_type);
+        static::assertEquals('Foo', $activities->first()->description);
     }
 
     /** @test */
@@ -122,10 +122,10 @@ class ActivityModelTest extends TestCase
 
         $activities = Activity::causedBy($causer)->get();
 
-        $this->assertCount(1, $activities);
-        $this->assertEquals($causer->getKey(), $activities->first()->causer_id);
-        $this->assertEquals('users', $activities->first()->causer_type);
-        $this->assertEquals('Foo', $activities->first()->description);
+        static::assertCount(1, $activities);
+        static::assertEquals($causer->getKey(), $activities->first()->causer_id);
+        static::assertEquals('users', $activities->first()->causer_type);
+        static::assertEquals('Foo', $activities->first()->description);
 
         Relation::morphMap([], false);
     }
@@ -148,10 +148,10 @@ class ActivityModelTest extends TestCase
 
         $activities = Activity::forSubject($subject)->get();
 
-        $this->assertCount(1, $activities);
-        $this->assertEquals($subject->getKey(), $activities->first()->subject_id);
-        $this->assertEquals('articles', $activities->first()->subject_type);
-        $this->assertEquals('Foo', $activities->first()->description);
+        static::assertCount(1, $activities);
+        static::assertEquals($subject->getKey(), $activities->first()->subject_id);
+        static::assertEquals('articles', $activities->first()->subject_type);
+        static::assertEquals('Foo', $activities->first()->description);
 
         Relation::morphMap([], false);
     }

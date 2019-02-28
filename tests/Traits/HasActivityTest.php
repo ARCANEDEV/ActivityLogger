@@ -61,6 +61,11 @@ class HasActivityTest extends TestCase
         static::assertCount(1, $user->actions);
     }
 
+    /* -----------------------------------------------------------------
+     |  Other Methods
+     | -----------------------------------------------------------------
+     */
+
     /**
      * Login with a fake user.
      *

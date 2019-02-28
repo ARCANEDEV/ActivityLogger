@@ -50,9 +50,9 @@ class CustomActivityModelTest extends TestCase
 
         $activity = activity()->track($this->activityDescription);
 
-        $this->assertEquals($this->activityDescription, $activity->description);
+        static::assertEquals($this->activityDescription, $activity->description);
 
-        $this->assertInstanceOf(CustomActivityModel::class, $activity);
+        static::assertInstanceOf(CustomActivityModel::class, $activity);
     }
 
     /** @test */
@@ -62,15 +62,15 @@ class CustomActivityModelTest extends TestCase
 
         activity()->track($this->activityDescription);
 
-        $this->markTestAsPassed();
+        static::markTestAsPassed();
     }
 
     /** @test */
     public function it_throws_an_exception_when_model_doesnt_extend_package_model()
     {
-        $this->app['config']->set('activity-logger.activities.model', InvalidActivityModel::class);
-
         $this->expectException(InvalidConfiguration::class);
+
+        $this->app['config']->set('activity-logger.activities.model', InvalidActivityModel::class);
 
         activity()->track($this->activityDescription);
     }
@@ -90,7 +90,7 @@ class CustomActivityModelTest extends TestCase
         /** @var CustomActivityModel $activity */
         $activity = activity()->withProperties($properties)->info($this->activityDescription);
 
-        $this->assertEquals($properties, $activity->changes()->toArray());
-        $this->assertEquals($properties, $activity->custom_properties->toArray());
+        static::assertEquals($properties, $activity->changes()->toArray());
+        static::assertEquals($properties, $activity->custom_properties->toArray());
     }
 }
