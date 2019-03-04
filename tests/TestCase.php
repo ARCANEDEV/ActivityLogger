@@ -22,7 +22,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -61,7 +61,7 @@ abstract class TestCase extends BaseTestCase
      | -----------------------------------------------------------------
      */
 
-    protected function assertPreConditions()
+    protected function assertPreConditions(): void
     {
         collect($this->getAnnotations())->filter(function ($location) {
             return in_array('!Travis', array_get($location, 'requires', []));

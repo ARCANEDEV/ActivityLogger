@@ -17,7 +17,7 @@ class CleanCommandTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -38,7 +38,11 @@ class CleanCommandTest extends TestCase
 
         static::assertSame(60, Activity::query()->count());
 
-        $this->artisan('activity-logger:clean');
+        $this->artisan('activity-logger:clean')
+             ->expectsOutput('Cleaning activity log...')
+             ->expectsOutput('Deleted 29 record(s) from the activity log.')
+             ->expectsOutput('All done!')
+             ->assertExitCode(0);
 
         static::assertSame(31, Activity::query()->count());
 

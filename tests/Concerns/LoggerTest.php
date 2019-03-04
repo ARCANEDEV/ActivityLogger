@@ -24,14 +24,14 @@ class LoggerTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->logger = $this->app->make(\Arcanedev\ActivityLogger\Contracts\ActivityLogger::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->logger);
 

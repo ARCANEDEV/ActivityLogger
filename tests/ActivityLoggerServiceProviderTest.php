@@ -1,7 +1,5 @@
 <?php namespace Arcanedev\ActivityLogger\Tests;
 
-use Arcanedev\ActivityLogger\ActivityLoggerServiceProvider;
-
 /**
  * Class     ActivityLoggerServiceProviderTest
  *
@@ -23,14 +21,14 @@ class ActivityLoggerServiceProviderTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->provider = $this->app->getProvider(\Arcanedev\ActivityLogger\ActivityLoggerServiceProvider::class);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->provider);
 
